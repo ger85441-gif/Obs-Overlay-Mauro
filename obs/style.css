@@ -1,0 +1,107 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:transparent; overflow:hidden; font-family:'Arial Bold',sans-serif; }
+
+.overlay { position:relative; width:100vw; height:100vh; }
+.bg { position:absolute; inset:0; background:#0a1420; z-index:1; }
+
+/* Barra superior con gradiente animado */
+.topbar {
+  position:relative; z-index:10;
+  padding:2.2vw 4.5vw;
+  background: linear-gradient(90deg, #0d1b2a, #112240, #0f1e36, #0d1b2a);
+  background-size: 300% 100%;
+  animation: gradient 12s ease infinite;
+  border-bottom: 0.35vw solid #1e90ff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+@keyframes gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width:1920px; margin:0 auto;
+  display:flex; align-items:center; 
+  gap:4vw; /* ← REDUCIDO para que las redes estén más cerca del logo */
+}
+
+/* Logo + fichas MUY cerca del logo */
+.logo-area { position:relative; flex-shrink:0; }
+.logo { position:relative; width:28vw; max-width:460px; min-width:300px; }
+.base { width:100%; }
+.text { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:78%; }
+
+.chip {
+  position:absolute; 
+  width:18%; 
+  opacity:0.75; 
+  pointer-events:none;
+  animation: float 8s ease-in-out infinite;
+}
+/* Fichas PEGADAS al logo (perfecto) */
+.chip.l { top:-8%; left:-12%; animation-delay:0s; }
+.chip.r { top:-6%; right:-14%; animation-delay:3s; }
+.chip.b { bottom:-18%; left:18%; animation-delay:6s; }
+
+@keyframes float {
+  0%,100% { transform:translateY(0) rotate(0deg); }
+  50%     { transform:translateY(-12px) rotate(4deg); }
+}
+
+/* Redes sociales - más a la izquierda y alineadas */
+.socials {
+  display:flex; 
+  gap:5.5vw; /* ← más cerca entre sí */
+  align-items:center; 
+  color:#f6e5d3;
+  margin-left:-2vw; /* ← empuja todo más a la izquierda */
+}
+
+.social {
+  text-align:center; 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center;
+}
+
+.social img {
+  width:8.8vw; 
+  max-width:115px; 
+  min-width:70px;
+  margin-bottom:0.9vw;
+}
+
+.social.yt img {
+  width:9.8vw; 
+  max-width:130px;
+}
+
+.name {
+  font-size:clamp(14px, 1.55vw, 24px);
+  letter-spacing:0.18em;
+  opacity:0.95;
+  margin-bottom:0.2vw;
+}
+
+.user {
+  font-size:clamp(19px, 2.4vw, 36px);
+  letter-spacing:0.06em;
+}
+
+/* Hover */
+.social:hover img { transform:scale(1.12); transition:0.3s; }
+.social:hover .user { color:#ffffff; transition:0.3s; }
+
+/* Línea dorada */
+.line {
+  height:0.45vw; min-height:5px;
+  background:#f6e5d3;
+  width:100%;
+}
+
+/* Fade in */
+.topbar, .line { opacity:0; animation:fade 1.8s forwards; }
+.topbar { animation-delay:0.4s; }
+.line { animation-delay:1s; }
+@keyframes fade { to{opacity:1} }
